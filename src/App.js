@@ -1,11 +1,23 @@
 import React from "react";
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
+import { Switch, Route } from "react-router-dom";
+
+const HatsPage = () => (
+  <div>
+    <h1>Hats Page</h1>
+  </div>
+);
 
 function App() {
   return (
     <div>
-      <HomePage />
+      {/* switch can save resource */}
+      <Switch>
+        {/* exact is true means it is the exact path to render, component is the page to go */}
+        <Route exact path="/" component={HomePage} />
+        <Route path="/hats" component={HatsPage} />
+      </Switch>
     </div>
   );
 }
