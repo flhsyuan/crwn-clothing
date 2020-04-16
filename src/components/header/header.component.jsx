@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // This is a special React syntax
 import { ReactComponent as Logo1 } from "../../assets/crown.svg";
 
-import { auth } from "../../firebase/firebae.utils";
+import { auth } from "../../firebase/firebase.utils";
 
 import "./header.styles.scss";
 
