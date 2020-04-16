@@ -36,7 +36,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         {/* switch can save resource */}
         <Switch>
           {/* exact is true means it is the exact path to render, component is the page to go */}
