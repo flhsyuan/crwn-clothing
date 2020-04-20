@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user-actions";
 
 // the router
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 // the components
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
@@ -56,16 +56,31 @@ class App extends React.Component {
           {/* exact is true means it is the exact path to render, component is the page to go */}
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInAndSignUpPage} />
+          {/* if the user is logged in, then redirect to the homepage rather than the sign in and sign up page */}
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
-//dispatch the action object to all the reducier
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+//dispatch the action object to all the reduciers
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
