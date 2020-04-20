@@ -1,3 +1,5 @@
+// All the middlewares
+
 import { createStore, applyMiddleware } from "redux";
 //useful for the debug
 import logger from "redux-logger";

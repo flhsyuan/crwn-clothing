@@ -7,6 +7,8 @@ import { auth } from "../../firebase/firebase.utils";
 
 import "./header.styles.scss";
 
+import { connect } from "react-redux";
+
 const Header = ({ currentUser }) => (
   <div className="header">
     <Link clessName="logo-container" to="/">
@@ -37,4 +39,10 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+// the state in the prop is the top level root reducer
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+// header re-render based on the mapStateProps function
+export default connect(mapStateToProps)(Header);

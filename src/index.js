@@ -8,7 +8,6 @@ import store from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    // provides all the functionality that routing needs
     <BrowserRouter>
       <App />
     </BrowserRouter>
