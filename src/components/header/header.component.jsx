@@ -9,7 +9,11 @@ import "./header.styles.scss";
 
 import { connect } from "react-redux";
 
-const Header = ({ currentUser }) => (
+import CartIcon from "../cart-icon/cart-icon.component";
+
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link clessName="logo-container" to="/">
       {/* put the logo inside the Link  */}
@@ -35,13 +39,17 @@ const Header = ({ currentUser }) => (
           </Link>
         )
       }
+
+      <CartIcon />
     </div>
+    {hidden ? null : <CartDropDown />}
   </div>
 );
 
 // the state in the prop is the top level root reducer
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 // header re-render based on the mapStateProps function
