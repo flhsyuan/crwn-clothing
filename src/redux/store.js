@@ -1,5 +1,5 @@
 // All the middlewares
-
+// store is a state warehouse which
 import { createStore, applyMiddleware } from "redux";
 //useful for the debug
 import logger from "redux-logger";
