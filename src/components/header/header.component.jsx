@@ -13,6 +13,11 @@ import CartIcon from "../cart-icon/cart-icon.component";
 
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
+import { createStructuredSelector } from "reselect";
+
+import { selectCartHidden } from "../../redux/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user-selector";
+
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link clessName="logo-container" to="/">
@@ -47,9 +52,10 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 // the state in the prop is the top level root reducer
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// in case of multiple selectors, we just use the createStructuredSelector to combine all the selectors
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 // header re-render based on the mapStateProps function

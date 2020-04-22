@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
 
+// the aim of selectors is to prevent components from re-rendered when any part of the state is changed
+
 // input selector and output selector
 // input selector does not use the createSelector and output selector use the input selector and createSelector to build themselves
 
@@ -10,6 +12,11 @@ const selectCart = (state) => state.cart;
 export const selectCartItems = createSelector(
   [selectCart],
   (cart) => cart.cartItems
+);
+
+export const selectCartHidden = createSelector(
+  [selectCart],
+  (cart) => cart.hidden
 );
 
 export const selectCartItemsCount = createSelector(
