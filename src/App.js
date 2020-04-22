@@ -10,6 +10,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-out.component";
+import CheckOutPage from "./pages/checkout/checkout.component";
 
 // the selector
 import { createStructuredSelector } from "reselect";
@@ -72,6 +73,7 @@ class App extends React.Component {
               )
             }
           />
+          <Route exact path="/checkout" component={CheckOutPage} />
         </Switch>
       </div>
     );
