@@ -22,6 +22,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         // keep the original items in the cart and add the action payload to the items array
         cartItems: addItemToCart(state.cartItems, action.payload),
       };
+
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        // filter all the items in the cart to keep all the needed items
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        ),
+      };
     default:
       return state;
   }
