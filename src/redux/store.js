@@ -3,6 +3,8 @@
 import { createStore, applyMiddleware } from "redux";
 //useful for the debug
 import logger from "redux-logger";
+// the redux-persist is to allow our browser to cache depending on certain configuration
+import { persistStore } from "redux-persist";
 
 import rootReducer from "./root-reducer";
 
@@ -10,6 +12,9 @@ import rootReducer from "./root-reducer";
 const middleWares = [logger];
 
 // apply the middlewares
-const store = createStore(rootReducer, applyMiddleware(...middleWares));
+export const store = createStore(rootReducer, applyMiddleware(...middleWares));
 
-export default store;
+//creating the persisited version of our store.
+export const persistor = persistStore(store);
+
+export default { store, persistor };
