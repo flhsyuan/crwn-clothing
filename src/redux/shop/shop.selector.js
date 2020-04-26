@@ -16,6 +16,7 @@ export const selectCollections = createSelector(
   (shop) => shop.collections
 );
 
+// switch the map into an array
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   (collections) => Object.keys(collections).map((key) => collections[key])
@@ -25,5 +26,6 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = (collectionUrlParam) =>
   createSelector(
     [selectCollections],
+    //the collections is now an object.
     (collections) => collections[collectionUrlParam]
   );

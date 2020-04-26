@@ -1,3 +1,4 @@
+//collection overview is the overall view of the shop page.
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";

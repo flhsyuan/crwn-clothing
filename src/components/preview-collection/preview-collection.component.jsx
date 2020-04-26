@@ -1,3 +1,5 @@
+//The collection preview is a single category of objects.
+
 import React from "react";
 
 import "./preview-collection.styles.scss";
