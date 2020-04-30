@@ -22,10 +22,4 @@ const rootReducer = combineReducers({
   shop: shopReducer,
 });
 
-// the parameters past into this function is an object with several attributes
-// export default combineReducers({
-//   user: userReducer,
-//   cart: cartReducer,
-// });
-
 export default persistReducer(persistConfig, rootReducer);
