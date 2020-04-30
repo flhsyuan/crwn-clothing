@@ -9,7 +9,12 @@ import { persistStore } from "redux-persist";
 import rootReducer from "./root-reducer";
 
 // an array of middlewares. It is more scalable in this way
-const middleWares = [logger];
+const middleWares = [];
+
+//if we are in the development environment, then use logger.
+if (process.env.NODE_ENV === "development") {
+  middleWares.push(logger);
+}
 
 // apply the middlewares
 export const store = createStore(rootReducer, applyMiddleware(...middleWares));
