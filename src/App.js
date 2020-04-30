@@ -19,6 +19,17 @@ import { selectCurrentUser } from "./redux/user/user-selector";
 //the auth
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
+//the styled components
+// import styled from "styled-components";
+
+// define the css for components and pass some props into the CSS.
+// const Text = styled.div`
+//   color: red;
+//   font-size: 28px;
+//   border: ${({ IsActive }) =>
+//     IsActive ? "1px solid black" : "3px dotted green"};
+// `;
+
 class App extends React.Component {
   // constructor() {
   //   super();

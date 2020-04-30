@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 // This is a special React syntax
 import { ReactComponent as Logo1 } from "../../assets/crown.svg";
 
@@ -18,37 +17,40 @@ import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../redux/cart/cart.selector";
 import { selectCurrentUser } from "../../redux/user/user-selector";
 
+//the styled-components
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContianer,
+  OptionDiv,
+  OptionLink,
+} from "./header.styles";
+
 const Header = ({ currentUser, hidden }) => (
-  <div className="header">
-    <Link clessName="logo-container" to="/">
+  <HeaderContainer>
+    <LogoContainer to="/">
       {/* put the logo inside the Link  */}
       <Logo1 className="logo" />
-    </Link>
+    </LogoContainer>
 
-    <div className="options">
-      <Link className="option" to="/shop">
-        SHOP
-      </Link>
+    <OptionsContianer>
+      <OptionLink to="/shop">SHOP</OptionLink>
       {/* <Link className="option" to="/signin">
         SIGN IN
       </Link> */}
       {
         // if the currentUser is a real user then, sign out
         currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
-            SIGN OUT
-          </div>
+          <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         )
       }
 
       <CartIcon />
-    </div>
+    </OptionsContianer>
     {hidden ? null : <CartDropDown />}
-  </div>
+  </HeaderContainer>
 );
 
 // the state in the prop is the top level root reducer
