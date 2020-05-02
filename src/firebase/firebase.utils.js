@@ -19,7 +19,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   // if the userAuth object is not exist
   if (!userAuth) return;
 
-  // query the firebase if the user is exist
+  // query the firebase of the current user snapShot
   const userRef = firestore.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
