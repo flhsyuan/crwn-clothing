@@ -21,7 +21,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   // query the firebase of the current user snapShot
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-
+  // get the snapshot
   const snapShot = await userRef.get();
 
   //if the firebase does not have the user snapshot object then create the object we want to store
@@ -41,6 +41,24 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+
+  //loop through the array and for each of the object, add them into the
+  objectsToAdd.forEach((obj) => {
+    // ask the firebase to create a new document and generate an ID automatically
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
 };
 
 export const auth = firebase.auth();

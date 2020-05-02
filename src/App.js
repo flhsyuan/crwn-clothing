@@ -17,7 +17,14 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user-selector";
 
 //the auth
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+} from "./firebase/firebase.utils";
+
+//select the shop data
+import { selectCollectionsForPreview } from "./redux/shop/shop.selector";
 
 //the styled components
 // import styled from "styled-components";
@@ -41,7 +48,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser, collectionsArray } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -56,6 +63,11 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
+      // have to destructing the objects store into the firebase
+      addCollectionAndDocuments(
+        "collections",
+        collectionsArray.map(({ title, items }) => ({ title, items }))
+      );
     });
   }
 
@@ -93,6 +105,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collectionsArray: selectCollectionsForPreview,
 });
 
 // const mapStateToProps = ({ user }) => ({
