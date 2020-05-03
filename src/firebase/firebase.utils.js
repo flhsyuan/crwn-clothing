@@ -74,7 +74,8 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       items,
     };
   });
-  // to all the object in the transformed collection
+
+  //
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
