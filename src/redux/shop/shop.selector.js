@@ -19,7 +19,8 @@ export const selectCollections = createSelector(
 // switch the map into an array
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  (collections) => Object.keys(collections).map((key) => collections[key])
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
 // the selectCollection need a parameter which is the collectionId
