@@ -62,7 +62,6 @@ export const addCollectionAndDocuments = async (
 };
 
 //destructing the actual data from the firebase
-//destructing the actual data from the firebase
 export const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollection = collections.docs.map((doc) => {
     const { title, items } = doc.data();
