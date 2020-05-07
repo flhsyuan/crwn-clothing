@@ -14,8 +14,24 @@ import {
   firestore,
   convertCollectionsSnapshotToMap,
 } from "../../firebase/firebase.utils";
+//the function to add
+import WithSpinner from "../../components/with-spinner/with-spinner.component";
+
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 class ShopPage extends React.Component {
+  // constructor(){
+  //   super();
+
+  //   this.state = {
+  //     isLoading: true
+  //   }
+  // }
+  //the state is the same as constructor and this.state above
+  state = {
+    isLoading: true,
+  };
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -25,17 +41,27 @@ class ShopPage extends React.Component {
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
+      //the data loading is finished
+      this.setState({ isLoading: false });
     });
   }
-
   render() {
     const { match } = this.props;
+    const { isLoading } = this.state;
     return (
       <div className="shop-page">
-        <Route exact path={`${match.path}`} component={CollectionsOverview} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={(props) => (
+            <CollectionsOverviewWithSpinner isLoading={isLoading} {...props} />
+          )}
+        />
         <Route
           path={`${match.path}/:collectionId`}
-          component={CollectionPage}
+          render={(props) => (
+            <CollectionPageWithSpinner isLoading={isLoading} {...props} />
+          )}
         />
       </div>
     );

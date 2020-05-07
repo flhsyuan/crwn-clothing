@@ -28,5 +28,5 @@ export const selectCollection = (collectionUrlParam) =>
   createSelector(
     [selectCollections],
     //the collections is now an object.
-    (collections) => collections[collectionUrlParam]
+    (collections) => (collections ? collections[collectionUrlParam] : null)
   );
