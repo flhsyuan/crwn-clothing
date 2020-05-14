@@ -38,12 +38,29 @@ class ShopPage extends React.Component {
     const { updateCollections } = this.props;
     const collectionRef = firestore.collection("collections");
     //async because the data is inside the snapshot object
+
+    // The following are the onSnapshot pattern
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
       //the data loading is finished
       this.setState({ isLoading: false });
     });
+
+    // The following are the promise pattern
+    // The get() and onShapshot() are probably the same, the only difference is that the get() is a promise.
+    // collectionRef.get().then(async (snapshot) => {
+    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+    //   updateCollections(collectionsMap);
+    //   //the data loading is finished
+    //   this.setState({ isLoading: false });
+    // });
+
+    // The following are the native fetch from the API.
+    // However, the document object is heavily nested. we have to dive into layers to get the data.
+    // fetch("https://firestore.googleapis.com/v1/projects/crwn-clothing-beee3/databases/(default)/documents/collections")
+    // .then(response = response.json())
+    // .then(collections => console.log(collections));
   }
   render() {
     const { match } = this.props;
