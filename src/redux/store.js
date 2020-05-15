@@ -6,10 +6,13 @@ import logger from "redux-logger";
 // the redux-persist is to allow our browser to cache depending on certain configuration
 import { persistStore } from "redux-persist";
 
+//Thunk
+import thunk from "redux-thunk";
+
 import rootReducer from "./root-reducer";
 
 // an array of middlewares. It is more scalable in this way
-const middleWares = [];
+const middleWares = [thunk];
 
 //if we are in the development environment, then use logger.
 if (process.env.NODE_ENV === "development") {

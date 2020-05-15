@@ -30,3 +30,8 @@ export const selectCollection = (collectionUrlParam) =>
     //the collections is now an object.
     (collections) => (collections ? collections[collectionUrlParam] : null)
   );
+
+export const selectCollectionFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching
+);
