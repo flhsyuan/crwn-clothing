@@ -35,3 +35,9 @@ export const selectCollectionFetching = createSelector(
   [selectShop],
   (shop) => shop.isFetching
 );
+
+export const selectCollectionsLoaded = createSelector(
+  [selectShop],
+  // the !! will return false when the following is falsey values:(null, "", 0)
+  (shop) => !!shop.collections
+);
