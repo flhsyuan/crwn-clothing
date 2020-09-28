@@ -36,6 +36,7 @@ class ShopPage extends React.Component {
   //     isLoading: true
   //   }
   // }
+  // change the class component to the functinal components
   //the state is the same as constructor and this.state above
 
   componentDidMount() {

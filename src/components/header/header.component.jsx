@@ -35,9 +35,6 @@ const Header = ({ currentUser, hidden }) => (
 
     <OptionsContianer>
       <OptionLink to="/shop">SHOP</OptionLink>
-      {/* <Link className="option" to="/signin">
-        SIGN IN
-      </Link> */}
       {
         // if the currentUser is a real user then, sign out
         currentUser ? (

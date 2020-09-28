@@ -71,6 +71,7 @@ class App extends React.Component {
     });
   }
 
+  //prevent the memory leaks
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }

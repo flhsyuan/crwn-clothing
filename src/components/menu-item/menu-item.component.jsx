@@ -1,6 +1,6 @@
 import React from "react";
 import "./menu-item.styles.scss";
-// take any component and modified it in some way and returned you the new modified component.
+// Higher order component: take any component and modified it in some way and returned you the new modified component.
 import { withRouter } from "react-router-dom";
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (

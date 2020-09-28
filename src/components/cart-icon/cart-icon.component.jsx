@@ -16,6 +16,7 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => (
 // connect to the state and pull the state as the props into the component
 // whenever the state is updated, the mapStateToProps will run again and pops new state in pur component
 // pass the whole state into the selector
+//
 const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount,
 });

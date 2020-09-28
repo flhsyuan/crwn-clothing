@@ -15,9 +15,11 @@ class SignIn extends React.Component {
   }
   // handle the submit
   handleSubmit = async (event) => {
-    //   get access to the full control on the submit event
+    // get access to the full control on the submit event
     event.preventDefault();
     const { email, password } = this.state;
+
+    // validate the email and password
     try {
       await auth.signInWithEmailAndPassword(email, password);
       this.state({ email: "", password: "" });
@@ -26,6 +28,7 @@ class SignIn extends React.Component {
     }
   };
 
+  //The handle change is to set the changed value to the state
   handleChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
