@@ -29,6 +29,7 @@ const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 class ShopPage extends React.Component {
+  // replace the constructor
   // constructor(){
   //   super();
 
@@ -40,6 +41,7 @@ class ShopPage extends React.Component {
   //the state is the same as constructor and this.state above
 
   componentDidMount() {
+    //dispatch the async function to the shop component.
     const { fetchCollectionsStartAsync } = this.props;
     fetchCollectionsStartAsync();
   }
