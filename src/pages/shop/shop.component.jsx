@@ -63,7 +63,7 @@ class ShopPage extends React.Component {
   // fetch("https://firestore.googleapis.com/v1/projects/crwn-clothing-beee3/databases/(default)/documents/collections")
   // .then(response = response.json())
   // .then(collections => console.log(collections));
-
+  // Added some comments
   render() {
     const { match } = this.props;
     return (
