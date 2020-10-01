@@ -21,6 +21,7 @@ export const fetchCollectionsFailure = (errorMessage) => ({
 });
 
 //Asyny function to fetch the data from the firebase
+// redux-thunk
 export const fetchCollectionsStartAsync = () => {
   return (dispatch) => {
     const collectionRef = firestore.collection("collections");
@@ -28,7 +29,7 @@ export const fetchCollectionsStartAsync = () => {
     //can disptach the fetchCollectionsstart function
     dispatch(fetchCollectionsStart());
 
-    // The following are the onSnapshot pattern
+    // The following are the onSnapshot pattern to fetch the data
     collectionRef
       .get()
       .then((snapshot) => {

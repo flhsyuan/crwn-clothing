@@ -1,10 +1,12 @@
 import React from "react";
 // import SHOP_DATA from "./shop.data";
 import CollectionsOverview from "../../components/collections-overview/collection-overview.component";
+import CollectionOverviewContainer from "../../components/collections-overview/collection-overview.container";
 
 import { Route } from "react-router-dom";
 
 import CollectionPage from "../collection/collection.component";
+import CollectionPageContainer from "../collection/collection.container";
 
 import { connect } from "react-redux";
 
@@ -24,6 +26,7 @@ import {
 
 //the function to add
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
+import CollectionsOverviewContainer from "../../components/collections-overview/collection-overview.container";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
@@ -62,27 +65,17 @@ class ShopPage extends React.Component {
   // .then(collections => console.log(collections));
 
   render() {
-    const { match, isCollectionFetching, isCollectionsLoaded } = this.props;
+    const { match } = this.props;
     return (
       <div className="shop-page">
         <Route
           exact
           path={`${match.path}`}
-          render={(props) => (
-            <CollectionsOverviewWithSpinner
-              isLoading={isCollectionFetching}
-              {...props}
-            />
-          )}
+          component={CollectionOverviewContainer}
         />
         <Route
           path={`${match.path}/:collectionId`}
-          render={(props) => (
-            <CollectionPageWithSpinner
-              isLoading={!isCollectionsLoaded}
-              {...props}
-            />
-          )}
+          component={CollectionPageContainer}
         />
       </div>
     );
@@ -90,7 +83,6 @@ class ShopPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  isCollectionFetching: selectCollectionFetching,
   isCollectionsLoaded: selectCollectionsLoaded,
 });
 
